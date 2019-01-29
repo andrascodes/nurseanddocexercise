@@ -13,6 +13,7 @@ import {
   faMoon,
   faSnowflake,
   faSun,
+  faTint,
   faWater,
   faWind
 } from "@fortawesome/free-solid-svg-icons";
@@ -37,16 +38,17 @@ library.add(
   faSnowflake,
   faSun,
   faWater,
-  faWind
+  faWind,
+  faTint
 );
 
 const GlobalStyles = createGlobalStyle`
   body {
-     /* @import url('https://fonts.googleapis.com/css?family=Notable');
-    font-family: 'Notable', sans-serif; */
+     @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     height: 100vh;
-    background-color: #ecf0f1;
+    background-color: #ffffff;
   }
 
   #root {

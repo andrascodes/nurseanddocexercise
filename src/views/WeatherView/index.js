@@ -55,6 +55,7 @@ class WeatherView extends Component {
         temperature={city.temperature}
         wind={city.wind}
         weather={city.weather}
+        humidity={city.humidity}
         localTime={localTime}
         timeOfDay={this.state.timeOfDay}
       />

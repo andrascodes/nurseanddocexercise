@@ -18,12 +18,24 @@ const TopContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   flex: 1 1;
+  width: 100%;
 `;
 
-const Time = styled.div``;
+const Time = styled.div`
+  margin-bottom: 20px;
+`;
 
 const CityName = styled.div`
-  font-size: 50px;
+  font-size: 35px;
+  text-align: center;
+`;
+
+const Temperature = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 75px;
+  margin-bottom: 20px;
 `;
 
 const Container = styled.div`
@@ -38,18 +50,19 @@ const EdgeValue = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 
   &:first-child {
-    margin-left: 10px;
+    margin-left: 20px;
   }
 
   &:last-child {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 `;
 const Current = styled.div`
-  font-size: 55px;
+  font-size: 65px;
+  line-height: 0.8;
 `;
 
 const Icon = styled.div`
@@ -67,6 +80,7 @@ const WeatherCard = ({
   temperature,
   wind,
   weather,
+  humidity,
   localTime,
   timeOfDay
 }) => {
@@ -79,18 +93,18 @@ const WeatherCard = ({
             {name}, {flag}
           </div>
         </CityName>
+        <Temperature>
+          <EdgeValue>
+            <div>Min</div>
+            {temperature.min}&#176;
+          </EdgeValue>
+          <Current>{temperature.current}&#176;</Current>
+          <EdgeValue>
+            <div>Max</div>
+            {temperature.max}&#176;
+          </EdgeValue>
+        </Temperature>
       </TopContainer>
-      <Container>
-        <EdgeValue>
-          <div>Min</div>
-          {temperature.min}&#176;
-        </EdgeValue>
-        <Current>{temperature.current}&#176;</Current>
-        <EdgeValue>
-          <div>Max</div>
-          {temperature.max}&#176;
-        </EdgeValue>
-      </Container>
       <Container>
         <Icon>
           {timeOfDay === "night" ? (
@@ -108,6 +122,12 @@ const WeatherCard = ({
         <Description>
           {wind.description} ({wind.speed} m/s)
         </Description>
+      </Container>
+      <Container>
+        <Icon>
+          <FontAwesomeIcon icon="tint" />
+        </Icon>
+        <Description>{humidity}%</Description>
       </Container>
     </Card>
   );

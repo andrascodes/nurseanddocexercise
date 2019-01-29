@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const View = styled.div`
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,7 +12,39 @@ const View = styled.div`
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
+`;
+
+const Title = styled.div`
+  text-align: center;
+  font-size: 25px;
+  width: 60%;
+`;
+
+const Button = styled.button`
+  font-size: 15px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: transparent;
+  color: black;
+`;
+
+const Input = styled.input`
+  text-align: center;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid black;
+  font-weight: bold;
+  width: 60%;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 class SearchView extends Component {
@@ -34,15 +67,15 @@ class SearchView extends Component {
     return (
       <View>
         <Container>
-          <div className="Title">How's the weather?</div>
+          <Title>What's the weather like in...</Title>
           <form action="submit" onSubmit={this.handleSearchFormSubmit}>
             <Container>
-              <input
+              <Input
                 required="required"
                 type="text"
                 onChange={this.handleSearchFieldChange}
               />
-              <button type="submit">Search</button>
+              <Button type="submit">Let's See!</Button>
             </Container>
           </form>
         </Container>
