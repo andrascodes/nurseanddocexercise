@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import addLeadingZeros from "../../lib/utils/addLeadingZeros";
 
@@ -32,6 +33,13 @@ class CityCard extends Component {
           </div>
           <div className="LocalTime">{this.state.localTime}</div>
           <div className="Temperature">{this.props.temperature}</div>
+          <div className="Icon">
+            {this.state.timeOfDay === "night" ? (
+              <FontAwesomeIcon icon={this.props.weather[0].icon.night} />
+            ) : (
+              <FontAwesomeIcon icon={this.props.weather[0].icon.day} />
+            )}
+          </div>
         </div>
       </Link>
     );

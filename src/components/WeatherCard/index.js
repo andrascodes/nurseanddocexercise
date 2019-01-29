@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 
 const WeatherCard = ({
@@ -7,7 +8,7 @@ const WeatherCard = ({
   wind,
   weather,
   localTime,
-  bgColor
+  timeOfDay
 }) => {
   return (
     <div className="WeatherCard">
@@ -21,11 +22,19 @@ const WeatherCard = ({
         <div className="Max">{temperature.max}</div>
       </div>
       <div className="Weather" style={{ display: "flex" }}>
-        <div className="Icon">Img</div>
-        <div className="Text">{weather.description}</div>
+        <div className="Icon">
+          {timeOfDay === "night" ? (
+            <FontAwesomeIcon icon={weather[0].icon.night} />
+          ) : (
+            <FontAwesomeIcon icon={weather[0].icon.day} />
+          )}
+        </div>
+        <div className="Text">{weather[0].description}</div>
       </div>
       <div className="Wind" style={{ display: "flex" }}>
-        <div className="Icon">Img</div>
+        <div className="Icon">
+          <FontAwesomeIcon icon="wind" />
+        </div>
         <div className="Text">
           {wind.description}, {wind.speed} m/s
         </div>

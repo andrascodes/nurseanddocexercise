@@ -15,6 +15,37 @@ const handleError = response => {
   return response;
 };
 
+const getIcon = weatherId => {
+  const createResult = (day, night) => ({
+    day,
+    night: night || day
+  });
+
+  if (200 <= weatherId && weatherId <= 232) {
+    return createResult("bolt");
+  } else if (300 <= weatherId && weatherId <= 321) {
+    return createResult("cloud-rain");
+  } else if (500 <= weatherId && weatherId <= 504) {
+    return createResult("cloud-sun-rain", "cloud-moon-rain");
+  } else if (weatherId === 511) {
+    return createResult("icicles");
+  } else if (520 <= weatherId && weatherId <= 531) {
+    return createResult("cloud-showers-heavy");
+  } else if (600 <= weatherId && weatherId <= 622) {
+    return createResult("snowflake");
+  } else if (701 <= weatherId && weatherId <= 781) {
+    return createResult("water");
+  } else if (weatherId === 800) {
+    return createResult("sun", "moon");
+  } else if (weatherId === 801) {
+    return createResult("cloud-sun", "cloud-moon");
+  } else if (weatherId === 802) {
+    return createResult("cloud");
+  } else if (weatherId === 803 || weatherId === 804) {
+    return createResult("cloud");
+  }
+};
+
 const getWindDescription = speed => {
   // https://en.wikipedia.org/wiki/Beaufort_scale
   if (speed < 0.5) {
@@ -75,7 +106,11 @@ const createOpenWeatherMapAPI = ({ fetch }) => {
             speed: city.wind.speed,
             description: getWindDescription(city.wind.speed)
           },
-          weather: city.weather[0]
+          weather: city.weather.map(({ id, description }) => ({
+            id,
+            icon: getIcon(id),
+            description
+          }))
         }))
       );
 
@@ -103,7 +138,11 @@ const createOpenWeatherMapAPI = ({ fetch }) => {
           speed: city.wind.speed,
           description: getWindDescription(city.wind.speed)
         },
-        weather: city.weather[0]
+        weather: city.weather.map(({ id, description }) => ({
+          id,
+          icon: getIcon(id),
+          description
+        }))
       }));
 
   return {

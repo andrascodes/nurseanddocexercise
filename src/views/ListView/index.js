@@ -34,6 +34,7 @@ class ListView extends Component {
             name={city.name}
             flag={city.flag}
             temperature={city.temperature.current}
+            weather={city.weather}
           />
         ))}
       </div>
