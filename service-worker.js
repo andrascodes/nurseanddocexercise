@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/nurseanddocexercise/precache-manifest.87c5f8a372e5acbfbd3ac1a7761b52dd.js"
+  "/nurseanddocexercise/precache-manifest.adc09433ff6f933353c48a01e5217e6e.js"
 );
 
 workbox.clientsClaim();
