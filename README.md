@@ -1,5 +1,7 @@
 # Nurse & Doc Front End Test Task - Weather
 
+The demo is available [here]("https://andrewszucs.github.io/nurseanddocexercise").
+
 Forked from [Matt Kendall's repository](https://gitlab.com/matt.kendall/weather).
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
