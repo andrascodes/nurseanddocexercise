@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import { openWeatherMapAPI, timezoneDBAPI } from "../../lib";
 
 import CityCard from "../../components/CityCard";
+import ErrorComponent from "../../components/ErrorComponent";
+import Loading from "../../components/Loading";
 import queryString from "query-string";
+import styled from "styled-components";
+
+const View = styled.div`
+  align-self: flex-start;
+  width: calc(100% - 10px);
+  margin-top: 5px;
+`;
 
 class ListView extends Component {
   state = {
-    cities: [],
+    cities: undefined,
     error: false
   };
 
@@ -15,12 +24,24 @@ class ListView extends Component {
     openWeatherMapAPI
       .findCityByName(city)
       .then(cities => this.setState({ cities }))
-      .catch(console.error);
+      .catch(error => this.setState({ error }));
   }
 
+  renderLoading = () => <Loading />;
+
+  renderError = () => <ErrorComponent />;
+
   render() {
+    if (this.state.error !== false) {
+      return this.renderError();
+    }
+
+    if (this.state.cities === undefined) {
+      return this.renderLoading();
+    }
+
     return (
-      <div>
+      <View>
         {this.state.cities.map(city => (
           <CityCard
             key={`${city.id}-card`}
@@ -37,7 +58,7 @@ class ListView extends Component {
             weather={city.weather}
           />
         ))}
-      </div>
+      </View>
     );
   }
 }

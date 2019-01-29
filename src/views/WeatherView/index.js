@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { openWeatherMapAPI, timezoneDBAPI } from "../../lib";
 
+import ErrorComponent from "../../components/ErrorComponent";
+import Loading from "../../components/Loading";
 import WeatherCard from "../../components/WeatherCard";
 import addLeadingZeros from "../../lib/utils/addLeadingZeros";
 
@@ -8,7 +10,8 @@ class WeatherView extends Component {
   state = {
     city: undefined,
     localTime: undefined,
-    timeOfDay: ""
+    timeOfDay: "",
+    error: false
   };
 
   componentDidMount() {
@@ -27,15 +30,19 @@ class WeatherView extends Component {
           timeOfDay: localTime.timeOfDay
         })
       )
-      .catch(console.error);
+      .catch(error => this.setState({ error }));
   }
 
-  renderError = () => {};
+  renderError = () => <ErrorComponent />;
 
-  renderLoading = () => <div>Loading...</div>;
+  renderLoading = () => <Loading />;
 
   render() {
-    const { city, localTime } = this.state;
+    const { city, localTime, error } = this.state;
+
+    if (error !== false) {
+      return this.renderError();
+    }
 
     if (city === undefined || localTime === undefined) {
       return this.renderLoading();
