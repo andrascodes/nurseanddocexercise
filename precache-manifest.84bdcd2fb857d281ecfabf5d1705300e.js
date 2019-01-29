@@ -12,7 +12,7 @@ self.__precacheManifest = [
     "url": "/nurseanddocexercise/static/js/1.d702aab4.chunk.js"
   },
   {
-    "revision": "4d15e6cba5efd47ce0b796ec27689df2",
+    "revision": "ed101d648f0510f13d2fd33831487d0d",
     "url": "/nurseanddocexercise/index.html"
   }
 ];
