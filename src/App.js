@@ -64,7 +64,7 @@ const App = () => {
   return (
     <Fragment>
       <GlobalStyles />
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Fragment>
           <Route exact path="/" component={SearchView} />
           <Route path="/search/" component={ListView} />
